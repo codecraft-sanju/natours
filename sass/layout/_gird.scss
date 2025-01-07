@@ -1,0 +1,75 @@
+.row {
+    max-width: $gird-witdth;
+    margin: 0 auto;
+
+    &:not(:last-child) {
+        margin-bottom: $grid-gutter-vert;
+
+        @include respond(tab-por) {
+            margin-bottom: $grid-gutter-vert-small;
+        }
+    }
+
+    @include respond(tab-por) {
+        max-width: 50rem;
+    }
+
+    @include respond(phone) {
+        padding: 0 3rem;
+    }
+
+    @include clearFix;
+
+    [class^="col-"] {
+        float: left;
+
+        &:not(:last-child) {
+            margin-right: $grid-gutter-hori;
+
+            @include respond(tab-por) {
+                margin-right: 0;
+                margin-bottom: $grid-gutter-vert-small;
+            }
+        }
+
+        // we want to overwrite all the column width below that's
+        //why we used the !important keyword
+        @include respond(tab-por) {
+            width: 100% !important;
+        }
+    }
+
+    .col-1-of-2 {
+        width: calc((100% - #{$grid-gutter-hori}) / 2);
+    }
+
+    .col-1-of-3 {
+        width: calc((100% - 2 * #{$grid-gutter-hori}) / 3);
+    }
+
+    .col-2-of-3 {
+        width: calc(
+            (100% - #{$grid-gutter-hori}) -
+                calc((100% - 2 * #{$grid-gutter-hori}) / 3)
+        );
+    }
+
+    .col-1-of-4 {
+        width: calc((100% - (3 * #{$grid-gutter-hori})) / 4);
+    }
+
+    .col-2-of-4 {
+        width: calc(
+            100% - 2 * #{$grid-gutter-hori} - 2 * (
+                    100% - (3 * #{$grid-gutter-hori})
+                ) / 4
+        );
+    }
+
+    .col-3-of-4 {
+        width: calc(
+            (100% - #{$grid-gutter-hori}) -
+                ((100% - (3 * #{$grid-gutter-hori})) / 4)
+        );
+    }
+}
